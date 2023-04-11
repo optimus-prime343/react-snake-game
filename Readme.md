@@ -8,12 +8,13 @@ A simple snake game made with React using the canvas element.
 
 ## Features to implement
 
-- [x] Add a score counter
-- [x] Add a high score counter
-- [x] Add a game over screen
-- [x] Add a start screen
-- [x] Add controls for mobile devices
-- [x] Find and fix bugs
+- [ ] Add sound effects for eating food, hitting a wall, moving, and game over
+- [ ] Add a score counter
+- [ ] Add a high score counter
+- [ ] Add a game over screen
+- [ ] Add a start screen
+- [ ] Add controls for mobile devices
+- [ ] Find and fix bugs
 
 ## How to run
 
