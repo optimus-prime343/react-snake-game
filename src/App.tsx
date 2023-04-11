@@ -1,7 +1,11 @@
-import { Game } from './components/game'
+import { GameBoard } from './components/game-board'
 
 function App() {
-  return <Game />
+  return (
+    <main className='grid place-content-center min-h-screen'>
+      <GameBoard />
+    </main>
+  )
 }
 
 export default App

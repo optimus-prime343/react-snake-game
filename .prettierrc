@@ -8,5 +8,6 @@
   "useTabs": false,
   "trailingComma": "es5",
   "quoteProps": "as-needed",
-  "arrowParens": "avoid"
+  "arrowParens": "avoid",
+  "endOfLine": "auto"
 }
