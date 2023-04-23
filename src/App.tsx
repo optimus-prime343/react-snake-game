@@ -1,10 +1,12 @@
+import { Center } from '@chakra-ui/react'
+
 import { GameBoard } from './components/game-board'
 
 function App() {
   return (
-    <main className='grid place-content-center min-h-screen'>
+    <Center minH='100vh'>
       <GameBoard />
-    </main>
+    </Center>
   )
 }
 

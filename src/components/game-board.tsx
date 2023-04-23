@@ -1,6 +1,5 @@
 /* eslint-disable no-nested-ternary */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import colors from 'tailwindcss/colors'
 
 export interface Position {
   x: number
@@ -12,9 +11,9 @@ const WIDTH = 800
 const HEIGHT = 400
 const SIZE = 20
 const DELAY = 100
-const BOARD_BACKGROUND = colors.gray[800]
-const SNAKE_COLOR = colors.green[500]
-const FOOD_COLOR = colors.red[500]
+const BOARD_BACKGROUND = '#eee'
+const SNAKE_COLOR = '#D21312'
+const FOOD_COLOR = '#41644A'
 // const SCORE_PER_FOOD = 10
 const INITIAL_SNAKE: Position[] = [
   {
