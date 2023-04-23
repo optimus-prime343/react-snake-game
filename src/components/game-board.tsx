@@ -6,6 +6,9 @@ export interface Position {
   y: number
 }
 export type Direction = 'up' | 'down' | 'left' | 'right'
+export interface GameBoardProps {
+  onGameOver: (score: number) => void
+}
 
 const WIDTH = 800
 const HEIGHT = 400
@@ -14,7 +17,7 @@ const DELAY = 100
 const BOARD_BACKGROUND = '#eee'
 const SNAKE_COLOR = '#D21312'
 const FOOD_COLOR = '#41644A'
-// const SCORE_PER_FOOD = 10
+const SCORE_PER_FOOD = 10
 const INITIAL_SNAKE: Position[] = [
   {
     x: SIZE,
@@ -39,12 +42,20 @@ const randomPosition = (): Position => {
     y: rand(HEIGHT - SIZE),
   }
 }
-export function GameBoard() {
+export function GameBoard({ onGameOver }: GameBoardProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null)
   const [snake, setSnake] = useState<Position[]>(() => INITIAL_SNAKE)
   const [direction, setDirection] = useState<Direction | null>(null)
   const [food, setFood] = useState<Position>(() => randomPosition())
+
+  // calculate the score based on the snake and the food eaten
+  const score = useMemo<number>(() => {
+    const initialSnakeLength = INITIAL_SNAKE.length
+    const currentSnakeLength = snake.length
+    const totalFoodEaten = currentSnakeLength - initialSnakeLength
+    return totalFoodEaten * SCORE_PER_FOOD
+  }, [snake.length])
 
   // calculate the speed of the snake based on the length of the snake
   // increase the speed by 2 for every food eaten
@@ -131,6 +142,7 @@ export function GameBoard() {
         setSnake(INITIAL_SNAKE)
         setFood(randomPosition())
         setDirection(null)
+        onGameOver(score)
         return
       }
       if (hasSnakeEatenFood()) {
@@ -142,7 +154,14 @@ export function GameBoard() {
       updateSnakeBody(dx, dy, 'update')
       setDirection(moveDirection)
     },
-    [hasSnakeCollided, hasSnakeEatenFood, isMoveAllowed, updateSnakeBody]
+    [
+      hasSnakeCollided,
+      hasSnakeEatenFood,
+      isMoveAllowed,
+      onGameOver,
+      score,
+      updateSnakeBody,
+    ]
   )
 
   const runGame = useCallback(
